@@ -15,40 +15,44 @@ export const LiveAuction = () => {
   ]);
 
   const playersList = [
-    { id: 1, name: "Sharan Kumar D", role: "Batsmen" },
-    { id: 2, name: "Mahananda", role: "Batsmen" },
-    { id: 3, name: "Potturi Tulasiram", role: "Batsmen" },
-    { id: 4, name: "Divakar C", role: "Batsmen" },
-    { id: 5, name: "Sujan kiran J", role: "Batsmen" },
+    { id: 1, name: "Sharan Kumar D", role: "Batsman" },
+    { id: 2, name: "Mahananda", role: "Batsman" },
+    { id: 3, name: "Potturi Tulasiram", role: "Batsman" },
+    { id: 4, name: "Divakar C", role: "Batsman" },
+    { id: 5, name: "Sujan kiran J", role: "Batsman" },
     { id: 6, name: "Yashas R Reddy", role: "Allrounder" },
     { id: 7, name: "Tanna Manohar", role: "Allrounder" },
     { id: 8, name: "Vikash Kumar", role: "Allrounder" },
     { id: 9, name: "Rahul Kumar", role: "Allrounder" },
     { id: 10, name: "Noel John", role: "Allrounder" },
-    { id: 11, name: "Edwin A", role: "Bowlers" },
-    { id: 12, name: "Parthiban Raja", role: "Bowlers" },
+    { id: 11, name: "Edwin A", role: "Bowler" },
+    { id: 12, name: "Parthiban Raja", role: "Bowler" },
     { id: 13, name: "Sanjeev Kumar Sahoo", role: "Allrounder" },
-    { id: 14, name: "Nikhil Kumar", role: "Batsmen" },
-    { id: 15, name: "Renson Selvaraj", role: "Batsmen" },
-    { id: 16, name: "Vinay Boddu", role: "Batsmen" },
-    { id: 17, name: "Ayyappa", role: "Batsmen" },
-    { id: 18, name: "Kabin M", role: "Batsmen" },
+    { id: 14, name: "Nikhil Kumar", role: "Batsman" },
+    { id: 15, name: "Renson Selvaraj", role: "Batsman" },
+    { id: 16, name: "Vinay Boddu", role: "Batsman" },
+    { id: 17, name: "Ayyappa", role: "Batsman" },
+    { id: 18, name: "Kabin M", role: "Batsman" },
     { id: 19, name: "kesavan k", role: "All-rounder" },
     { id: 20, name: "Sairam", role: "All-rounder" },
     { id: 21, name: "Arjun Reddy", role: "All-rounder" },
-    { id: 22, name: "Stewart Prince PM", role: "Batsmen" },
-    { id: 23, name: "Vipul Tapare", role: "Batsmen" },
-    { id: 24, name: "Basheer Ahmed", role: "Batsmen" },
-    { id: 25, name: "Chanakya Raju", role: "Batsmen" },
-    { id: 26, name: "Udhayakumar T", role: "Batsmen" },
-    { id: 27, name: "Kuldeep Managoli", role: "Batsmen" },
-    { id: 28, name: "Shripad Dhanraj Hotkar", role: "Batsmen" },
-    { id: 29, name: "Amit Bhat", role: "Batsmen" },
-    { id: 30, name: "Saket kumar Jha", role: "Batsmen" },
-    { id: 31, name: "Siddhant Parate", role: "Batsmen" },
-    { id: 32, name: "Pragadeeshwaran", role: "Batsmen" },
-    { id: 33, name: "Kishore Rajan", role: "Batsmen" },
-    { id: 34, name: "Pragadeeshwaran", role: "Batsmen" },
+    { id: 22, name: "Stewart Prince PM", role: "Batsman" },
+    { id: 23, name: "Vipul Tapare", role: "Batsman" },
+    { id: 24, name: "Basheer Ahmed", role: "Batsman" },
+    { id: 25, name: "Chanakya Raju", role: "Batsman" },
+    { id: 26, name: "Udhayakumar T", role: "Batsman" },
+    { id: 27, name: "Kuldeep Managoli", role: "Batsman" },
+    { id: 28, name: "Shripad Dhanraj Hotkar", role: "Batsman" },
+    { id: 29, name: "Amit Bhat", role: "Batsman" },
+    { id: 30, name: "Saket kumar Jha", role: "Batsman" },
+    { id: 31, name: "Siddhant Parate", role: "Batsman" },
+    { id: 32, name: "Pragadeeshwaran", role: "Batsman" },
+    { id: 33, name: "Kishore Rajan", role: "Batsman" },
+    { id: 34, name: "Pragadeeshwaran", role: "Batsman" },
+
+    { id: 35, name: "Krishna Bhandari", role: "Batsman" },
+    { id: 36, name: "Praveen Kumar", role: "Batsman" },
+    { id: 37, name: "Eniya Kumar", role: "Batsman" },
   ];
 
   const [currentPlayer, setCurrentPlayer] = React.useState(playersList[0]);
@@ -324,6 +328,7 @@ export const LiveAuction = () => {
       <div className="flex">
         <div className="w-1/2 p-4">
           <div className="flex justify-evenly">
+            {/* {pla} */}
             <button
               className="px-4 py-2 bg-yellow-400 text-white  text-3xl font-semibold rounded hover:bg-yellow-500 transition"
               onClick={handlePreviousPlayer}

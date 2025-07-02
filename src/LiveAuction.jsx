@@ -53,12 +53,14 @@ export const LiveAuction = () => {
   const [currentPlayer, setCurrentPlayer] = React.useState(playersList[0]);
   const [currentPlayerIndex, setCurrentPlayerIndex] = React.useState(0);
   const handleNextPlayer = () => {
+    setIsRunning(false);
     handleReset();
     const nextIndex = (currentPlayerIndex + 1) % playersList.length;
     setCurrentPlayer(playersList[nextIndex]);
     setCurrentPlayerIndex(nextIndex);
   };
   const handlePreviousPlayer = () => {
+    setIsRunning(false);
     handleReset();
     const prevIndex =
       (currentPlayerIndex - 1 + playersList.length) % playersList.length;
@@ -93,7 +95,7 @@ export const LiveAuction = () => {
 
   const [isSoldOut, setIsSoldOut] = React.useState(false);
   const handleSoldOut = (teamId) => {
-    setIsRunning((prev) => !prev);
+    setIsRunning(true);
     setIsSoldOut(true);
   };
 
@@ -152,7 +154,8 @@ export const LiveAuction = () => {
                 <div className="flex flex-col justify-center items-center p-4 h-full">
                   <div className="mt-7"></div>
                   <h1 className="text-6xl font-bold text-white">
-                    Sold To {maxTeam.name}
+                    Sold To{" "}
+                    <span className="text-yellow-400">{maxTeam.name}</span>
                   </h1>
                   <h1 className="text-9xl font-bold text-white">
                     {maxTeam.value}

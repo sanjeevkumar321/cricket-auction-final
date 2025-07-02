@@ -5,7 +5,8 @@ import ConfettiPopper from "./ConfettiPopper";
 export const LiveAuction = () => {
   // const { user } = useUser();
 
-  const [currentValue, setCurrentValue] = React.useState(10);
+  const [currentValue, setCurrentValue] = React.useState(0);
+  // val int=0;
 
   const [teamsValue, setTeamsValue] = React.useState([
     { id: 1, name: "DiggiRampage 11", value: 0 },
@@ -68,22 +69,52 @@ export const LiveAuction = () => {
     setCurrentPlayerIndex(prevIndex);
   };
 
+  // const handleIncrement = (teamId) => {
+  //   setTeamsValue((prevValues) =>
+  //     prevValues.map((team) => {
+  //       if (team.id === teamId) {
+  //         if (currentValue <= 0) {
+  //           setCurrentValue((prev) => prev + 10);
+  //           return { ...team, value: currentValue };
+  //         } else {
+  //           setCurrentValue(currentValue + 2);
+  //           return { ...team, value: currentValue + 2 };
+  //         }
+  //       }
+  //       return team;
+  //     })
+  //   );
+
+  //   console.log("Incremented team:", teamId, currentValue);
+  // };
   const handleIncrement = (teamId) => {
-    setTeamsValue((prevValues) =>
-      prevValues.map((team) => {
-        if (team.id === teamId) {
-          if (currentValue == 0) {
-            setCurrentValue((prev) => prev + 10);
-            return { ...team, value: currentValue };
-          } else {
-            setCurrentValue((prev) => prev + 2);
-            return { ...team, value: currentValue };
-          }
-        }
-        return team;
-      })
-    );
+    setCurrentValue((prevValue) => {
+      const newValue = prevValue === 0 ? prevValue + 10 : prevValue + 2;
+
+      // Now update team values using the newly calculated value
+      setTeamsValue((prevTeams) =>
+        prevTeams.map((team) =>
+          team.id === teamId ? { ...team, value: newValue } : team
+        )
+      );
+
+      return newValue;
+    });
   };
+  // const handleIncrement = (teamId) => {
+  //   setTeamsValue((prevValues) => {
+  //     let newCurrentValue =
+  //       currentValue === 0 ? currentValue + 10 : currentValue + 2;
+  //     setCurrentValue(newCurrentValue);
+
+  //     return prevValues.map((team) => {
+  //       if (team.id === teamId) {
+  //         return { ...team, value: newCurrentValue };
+  //       }
+  //       return team;
+  //     });
+  //   });
+  // };
 
   const handleDecrement = (teamId) => {
     setTeamsValue((prevValues) =>
@@ -95,6 +126,7 @@ export const LiveAuction = () => {
 
   const [isSoldOut, setIsSoldOut] = React.useState(false);
   const handleSoldOut = (teamId) => {
+    saveLocal();
     setIsRunning(true);
     setIsSoldOut(true);
   };
@@ -106,13 +138,31 @@ export const LiveAuction = () => {
       { id: 2, name: "Diggi Strikes XI", value: 0 },
       { id: 3, name: "Byte Blasters", value: 0 },
     ]);
-    setCurrentValue(10);
+    setCurrentValue(0);
   };
   const maxTeam = teamsValue.reduce((prev, current) => {
     return current.value > prev.value ? current : prev;
   });
+
   const [isRunning, setIsRunning] = React.useState(false);
+  const [result, setResult] = React.useState([]);
   // const [isRunning, setIsRunning] = React.useState(true);
+  const saveLocal = () => {
+    const data = {
+      teamsValue,
+      currentPlayer,
+      currentPlayerIndex,
+      team: maxTeam,
+    };
+
+    const storedData = localStorage.getItem("auctionData");
+    const parsedData = storedData ? JSON.parse(storedData) : [];
+
+    parsedData.push(data);
+
+    localStorage.setItem("auctionData", JSON.stringify(parsedData));
+    setResult(parsedData);
+  };
   return (
     <div className="bg-blue-900 h-screen select-none">
       {/* <SchoolPridePopper /> */}
@@ -140,7 +190,7 @@ export const LiveAuction = () => {
         <div className="w-1/2">
           <div className="flex items-center justify-center p-4">
             <img
-              src={`https://sanjeevkumar321.github.io/cricket-auction-final/images/${currentPlayer.name}.jpg`}
+              src={`https://sanjeevkumar321.github.io/cricket-auction-final/images/${currentPlayer.name.toLowerCase().replace(/ /g, '_')}.jpg`}
               alt="Profile"
               className="w-[600px] h-[600px] rounded-full object-cover border-4 border-white"
             />
@@ -189,6 +239,9 @@ export const LiveAuction = () => {
                   >
                     -
                   </button>
+                  <p className="text-6xl font-bold text-green-300 pt-3">
+                    {result.filter((entry) => entry.team.id === 1).length}
+                  </p>
                 </div>
 
                 <div className="flex flex-col justify-center items-center p-4 h-full">
@@ -212,6 +265,9 @@ export const LiveAuction = () => {
                   >
                     -
                   </button>
+                  <p className="text-6xl font-bold text-green-300 pt-3">
+                    {result.filter((entry) => entry.team.id === 2).length}
+                  </p>
                 </div>
 
                 <div className="flex flex-col justify-center items-center p-4 h-full">
@@ -235,6 +291,9 @@ export const LiveAuction = () => {
                   >
                     -
                   </button>
+                  <p className="text-6xl font-bold text-green-300 pt-3">
+                    {result.filter((entry) => entry.team.id === 3).length}
+                  </p>
                 </div>
 
                 {/* <div className="flex flex-col justify-center items-center p-4 h-full">

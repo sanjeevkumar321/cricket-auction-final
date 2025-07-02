@@ -138,7 +138,7 @@ export const LiveAuction = () => {
         <div className="w-1/2">
           <div className="flex items-center justify-center p-4">
             <img
-              src={`/images/${currentPlayer.name}.jpg`}
+              src={`https://sanjeevkumar321.github.io/cricket-auction-final/images/${currentPlayer.name}.jpg`}
               alt="Profile"
               className="w-[600px] h-[600px] rounded-full object-cover border-4 border-white"
             />
